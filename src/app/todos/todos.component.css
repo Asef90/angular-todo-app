@@ -1,0 +1,7 @@
+.completed {
+  text-decoration: line-through;
+}
+
+mat-checkbox span {
+  white-space: normal;
+}

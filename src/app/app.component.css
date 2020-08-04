@@ -1,0 +1,8 @@
+.projects-label {
+  text-align: center;
+  flex: 1;
+}
+app-projects {
+  display: inline-flex;
+  flex-flow: row wrap;
+}
