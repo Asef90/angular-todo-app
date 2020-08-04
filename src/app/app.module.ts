@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectsComponent } from './projects/projects.component';
 import { TodosComponent } from './todos/todos.component';
+import { NewTodoComponent } from './new-todo/new-todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsComponent,
-    TodosComponent
+    TodosComponent,
+    NewTodoComponent
   ],
   imports: [
     HttpClientModule,

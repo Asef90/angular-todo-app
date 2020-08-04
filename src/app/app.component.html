@@ -1,17 +1,12 @@
 <div layout="row" layout-sm="column">
   <mat-toolbar color="primary">
     <span class="projects-label">Задачи</span>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="openDialog()">
       <mat-icon>add</mat-icon>
     </button>
   </mat-toolbar>
 
   <div flex="">
-    <app-projects></app-projects>
+    <app-projects [projects]="projects"></app-projects>
   </div>
-
-  <div class="input">
-
-  </div>
-
 </div>

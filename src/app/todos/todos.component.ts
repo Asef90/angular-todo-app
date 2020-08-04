@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../api.service'
 
 import { Todo } from '../todo';
 
@@ -10,22 +10,13 @@ import { Todo } from '../todo';
 })
 export class TodosComponent implements OnInit {
   @Input() todos: Todo[];
-  @Output() updateTodoEvent = new EventEmitter();
 
   updateTodo(todo) {
-    this.updateTodoEvent.emit(todo);
+    const todoCopy = { ...todo, isCompleted: !todo.isCompleted };
+
+    this.apiService.updateTodo(todoCopy)
+        .subscribe(res => todo.isCompleted = res.isCompleted);
   }
-
-  // updateTodo(todo) {
-  //   const updateTodo = this.todos.find(elem => elem.id === todo.id)
-  //   console.log(updateTodo);
-  //
-  //   todo.isCompleted = !todo.isCompleted;
-  //
-  //   this.apiService.updateTodo(todo)
-  //       .subscribe(res => console.log(res));
-  // }
-
 
   constructor(private apiService: ApiService) { }
 

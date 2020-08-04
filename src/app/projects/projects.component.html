@@ -1,6 +1,6 @@
 <mat-card *ngFor="let project of projects">
-  <mat-card-title>{{project.title | uppercase}}</mat-card-title>
+  <mat-card-title>{{ project.title }}</mat-card-title>
   <mat-card-content>
-    <app-todos [todos]="project.todos" (updateTodoEvent)="handleChange($event)"></app-todos>
+    <app-todos [todos]="project.todos"></app-todos>
   </mat-card-content>
 </mat-card>
