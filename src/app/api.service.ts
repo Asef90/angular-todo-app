@@ -12,7 +12,7 @@ import { Todo } from './todo';
   providedIn: 'root'
 })
 export class ApiService {
-  private _apiBase = "https://https://todo-oblako.herokuapp.com"
+  private _apiBase = "https://todo-oblako.herokuapp.com/"
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
