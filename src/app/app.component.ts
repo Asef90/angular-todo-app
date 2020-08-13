@@ -1,12 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { plainToClass } from 'class-transformer'
 
 import { ApiService } from './api.service';
 import { NewTodoComponent } from "./new-todo/new-todo.component";
 import { Project } from './project';
-import { plainToClass } from 'class-transformer'
-
-import './new-todo/new-todo.component'
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +15,7 @@ import './new-todo/new-todo.component'
 export class AppComponent implements OnInit {
   projects: Project[];
   categories: string[];
-
-  todoCategory: string
+  todoCategory: string;
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NewTodoComponent, {
@@ -28,12 +26,12 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         this.todoCategory = data.todoCategory || data.newCategory;
-        this.createTodo(data);
+        this.createTodo(data.todoText);
       }
     );
   }
 
-  getProjects() {
+  getProjects(): void {
     this.apiService.getProjects()
         .subscribe(projects => {
           this.projects = projects;
@@ -41,19 +39,18 @@ export class AppComponent implements OnInit {
         });
   }
 
-  createTodo(data) {
-    this.apiService.createTodo(data.todoText, this.todoCategory)
+  createTodo(todoText: string): void {
+    this.apiService.createTodo(todoText, this.todoCategory)
         .subscribe(todo => {
           this.handleTodo(todo)
         })
   }
 
-  handleTodo(todo) {
+  handleTodo(todo: Todo): void {
     const project = this.projects.find(proj => proj.id === todo.projectId);
 
     if (project) {
       project.todos.push(todo);
-      console.log(1)
     } else {
       const obj = { id: todo.projectId, title: this.todoCategory, todos: [todo] };
 

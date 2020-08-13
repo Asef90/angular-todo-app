@@ -1,4 +1,4 @@
-<mat-card *ngFor="let project of projects">
+<mat-card *ngFor="let project of projects; trackBy:trackById">
   <mat-card-title>{{ project.title }}</mat-card-title>
   <mat-card-content>
     <app-todos [todos]="project.todos"></app-todos>

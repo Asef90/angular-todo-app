@@ -1,11 +1,11 @@
-import { Component, Inject, Input } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-export interface DialogData {
+interface DialogData {
   todoText: string;
   todoCategory: string;
   newCategory: string;
-  categories: string[]
+  categories: string[];
 }
 
 @Component({
@@ -14,10 +14,6 @@ export interface DialogData {
   styleUrls: ['./new-todo.component.css']
 })
 export class NewTodoComponent {
-  todoText: string;
-  todoCategory: string;
-  newCategory: string;
-  categories;
 
   constructor(
     public dialogRef: MatDialogRef<NewTodoComponent>,
@@ -27,7 +23,7 @@ export class NewTodoComponent {
     this.dialogRef.close();
   }
 
-  save() {
+  save(): void {
     this.dialogRef.close(this.data);
   }
 }

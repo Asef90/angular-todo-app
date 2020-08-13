@@ -1,5 +1,5 @@
 <mat-list>
-  <mat-list-item *ngFor="let todo of todos">
+  <mat-list-item *ngFor="let todo of todos; trackBy:trackById">
     <mat-checkbox [(ngModel)]="todo.isCompleted" (click)="updateTodo(todo)">
       <span [class.completed]="todo.isCompleted">{{ todo.text }}</span>
     </mat-checkbox>
